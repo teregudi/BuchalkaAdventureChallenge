@@ -32,6 +32,13 @@ public class Main {
         locations.get(5).addExit("S", 1);
         locations.get(5).addExit("W", 2);
 
+        Map<String, String> directions = new HashMap<>();
+        directions.put("NORTH", "N");
+        directions.put("WEST", "W");
+        directions.put("SOUTH", "S");
+        directions.put("EAST", "E");
+        directions.put("QUIT", "Q");
+
         int loc = 1;
         while (true){
             System.out.println(locations.get(loc).getDescription());
@@ -44,10 +51,21 @@ public class Main {
             }
             System.out.println();
 
-            String direction = scanner.nextLine().toUpperCase();
+            String[] input = scanner.nextLine().toUpperCase().split(" ");
+            String whereTo = null;
+            for (String s : input){
+                if (directions.containsValue(s)) {
+                    whereTo = s;
+                    break;
+                }
+                else if (directions.containsKey(s)) {
+                    whereTo = directions.get(s);
+                    break;
+                }
+            }
 
-            if (exits.containsKey(direction)){
-                loc = exits.get(direction);
+            if (exits.containsKey(whereTo)){
+                loc = exits.get(whereTo);
             } else {
                 System.out.println("You cannot go in that direction.");
             }
