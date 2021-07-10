@@ -62,7 +62,7 @@ public class Main {
                     whereTo = directions.get(s);
                     break;
                 }
-            }
+            } 
 
             if (exits.containsKey(whereTo)){
                 loc = exits.get(whereTo);
